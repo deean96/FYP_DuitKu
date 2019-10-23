@@ -3,6 +3,8 @@ import 'package:duitku/expenses/set_expenses_limit.dart';
 import 'package:duitku/expenses/view_expenses.dart';
 import 'package:duitku/user/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:duitku/user/login.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,6 +12,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
+  String user_email, user_name;
+
+  getPref() async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+     user_email = preferences.getString("user_email");
+     user_name = preferences.getString("user_name"); 
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getPref();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +50,8 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             //Drawer Header
             new UserAccountsDrawerHeader(
-              accountName: Text("User"),
-              accountEmail: Text("Email"),
+              accountName: Text("$user_name"),
+              accountEmail: Text("$user_email"),
               currentAccountPicture: GestureDetector(
                 child: new CircleAvatar(
                   backgroundColor: Colors.grey,
