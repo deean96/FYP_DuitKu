@@ -25,31 +25,31 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
-  check(){
+  check() {
     final form = _key.currentState;
-    if(form.validate()){
+    if (form.validate()) {
       form.save();
       save();
     }
   }
 
-  save() async{
-    final response = await http.post("http://192.168.0.127:8080/duitku/api/register.php",
-    body: {
-      "user_email" : user_email,
-      "user_password" : user_password,
-      "user_name" : user_name,
+  save() async {
+    final response =
+        await http.post("http://192.168.43.253/duitku/api/register.php", body: {
+      "user_email": user_email,
+      "user_password": user_password,
+      "user_name": user_name,
     });
 
     final data = jsonDecode(response.body);
-    int value = data ['value'];
+    int value = data['value'];
     String message = data['message'];
 
-    if(value==1){
+    if (value == 1) {
       setState(() {
-       Navigator.pop(context); 
+        Navigator.pop(context);
       });
-    } else{
+    } else {
       print(message);
     }
   }
@@ -77,8 +77,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               TextFormField(
-                validator: (input) => input.trim().isEmpty
-                  ? 'Please enter your name' : null,
+                validator: (input) =>
+                    input.trim().isEmpty ? 'Please enter your name' : null,
                 onSaved: (input) => user_name = input,
                 decoration: InputDecoration(
                     hintText: "e.g.: Ali Bin Ahmad",
@@ -86,8 +86,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     labelText: 'Name'),
               ),
               TextFormField(
-                validator: (input) => input.trim().isEmpty
-                  ? 'Please enter your email' : null,
+                validator: (input) =>
+                    input.trim().isEmpty ? 'Please enter your email' : null,
                 onSaved: (input) => user_email = input,
                 decoration: InputDecoration(
                     hintText: "e.g.: youremail@domain.com",
@@ -98,7 +98,8 @@ class _RegisterPageState extends State<RegisterPage> {
               TextFormField(
                 obscureText: _hidePassword,
                 validator: (input) => input.length < 8
-                  ? 'Your Password Must Be 8 Characters Long' : null,
+                    ? 'Your Password Must Be 8 Characters Long'
+                    : null,
                 onSaved: (input) => user_password = input,
                 decoration: InputDecoration(
                     hintText: "Enter Your Password",

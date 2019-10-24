@@ -18,60 +18,62 @@ class _AddExpensesState extends State<AddExpenses> {
       appBar: AppBar(
         title: Text('Add an Expense'),
       ),
-      backgroundColor: Colors.green[200],
       body: Form(
         //key: _formKey,
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(50),
-            ),
-            //mainAxisAlignment: MainAxisAlignment.center,
-            //crossAxisAlignment: CrossAxisAlignment.center,
-
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Location of Expense:'),
-            ),
-
-            DateTimeField(
-              format: format,
-              decoration: InputDecoration(labelText: 'Date of Expense:'),
-              onShowPicker: (context, currentValue) {
-                return showDatePicker(
-                    context: context,
-                    firstDate: DateTime(1900),
-                    initialDate: currentValue ?? DateTime.now(),
-                    lastDate: DateTime(2100));
-              },
-            ),
-
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Category of Expenses:'),
-            ),
-
-            TextFormField(
-              decoration:
-                  InputDecoration(labelText: 'Total Amount of Expenses:'),
-              keyboardType: TextInputType.number,
-            ),
-
-            Row(children: <Widget>[
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
               Padding(
-                padding: EdgeInsets.all(40),
+                padding: EdgeInsets.all(50),
               ),
-              RaisedButton(
-                onPressed: () {},
-                child: Text('Add an Expense'),
+              //mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.center,
+
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Location of Expense:'),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 10),
+
+              DateTimeField(
+                format: format,
+                decoration: InputDecoration(labelText: 'Date of Expense:'),
+                onShowPicker: (context, currentValue) {
+                  return showDatePicker(
+                      context: context,
+                      firstDate: DateTime(1900),
+                      initialDate: currentValue ?? DateTime.now(),
+                      lastDate: DateTime(2100));
+                },
               ),
-              RaisedButton(
-                onPressed: () {},
-                child: Text('Scan QR Code'),
+
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Category of Expenses:'),
               ),
-            ]),
-          ],
+
+              TextFormField(
+                decoration:
+                    InputDecoration(labelText: 'Total Amount of Expenses:'),
+                keyboardType: TextInputType.number,
+              ),
+
+              Row(children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.all(40),
+                ),
+                RaisedButton(
+                  onPressed: () {},
+                  child: Text('Add an Expense'),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                ),
+                RaisedButton(
+                  onPressed: () {},
+                  child: Text('Scan QR Code'),
+                ),
+              ]),
+            ],
+          ),
         ),
       ),
     );

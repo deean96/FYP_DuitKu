@@ -7,19 +7,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:duitku/user/login.dart';
 
 class HomePage extends StatefulWidget {
+  final VoidCallback signOut;
+
+  HomePage(this.signOut);
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  
-  String user_email, user_name;
+  String user_email = '', user_name = '';
 
-  getPref() async{
+  getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-     user_email = preferences.getString("user_email");
-     user_name = preferences.getString("user_name"); 
+      user_email = preferences.getString("user_email");
+      user_name = preferences.getString("user_name");
     });
   }
 
@@ -29,11 +31,16 @@ class _HomePageState extends State<HomePage> {
     getPref();
   }
 
+  signOut() {
+    setState(() {
+      widget.signOut();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.greenAccent,
         title: Text('Home'),
         actions: <Widget>[
           new IconButton(
@@ -115,6 +122,9 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               title: Text("Log Out"),
               leading: Icon(Icons.exit_to_app),
+              onTap: () {
+                signOut();
+              },
             ),
           ],
         ),
