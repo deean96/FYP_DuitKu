@@ -101,10 +101,9 @@ class _LoginPageState extends State<LoginPage> {
     switch (_loginStatus) {
       case LoginStatus.notSignIn:
         return Scaffold(
-          //appBar: AppBar(
-          //title: Text('Hi!'),
-          //),
+          resizeToAvoidBottomInset: false,
           body: Container(
+            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
             child: Form(
               key: _key,
               child: Column(
@@ -129,7 +128,8 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                         hintText: "e.g.: youremail@domain.com",
                         icon: Icon(Icons.mail),
-                        labelText: 'Email'),
+                        labelText: 'Email',
+                        border: OutlineInputBorder()),
                     keyboardType: TextInputType.emailAddress,
                   ),
                   TextFormField(
@@ -147,7 +147,8 @@ class _LoginPageState extends State<LoginPage> {
                           icon: Icon(_hidePassword
                               ? Icons.visibility_off
                               : Icons.visibility),
-                        )),
+                        ),
+                        border: OutlineInputBorder()),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),

@@ -57,7 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false, //disable overflow
+      resizeToAvoidBottomInset: false, //disable overflow
       body: Container(
         child: Form(
           key: _key, //form validator
@@ -67,7 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
             children: <Widget>[
               Image.asset('assets/images/duitku.png'),
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -83,7 +83,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: InputDecoration(
                     hintText: "e.g.: Ali Bin Ahmad",
                     icon: Icon(Icons.person),
-                    labelText: 'Name'),
+                    labelText: 'Name',
+                    border: OutlineInputBorder()),
               ),
               TextFormField(
                 validator: (input) =>
@@ -92,7 +93,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 decoration: InputDecoration(
                     hintText: "e.g.: youremail@domain.com",
                     icon: Icon(Icons.mail),
-                    labelText: 'Email'),
+                    labelText: 'Email',
+                    border: OutlineInputBorder()),
                 keyboardType: TextInputType.emailAddress,
               ),
               TextFormField(
@@ -105,6 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     hintText: "Enter Your Password",
                     icon: Icon(Icons.lock),
                     labelText: 'Password',
+                    border: OutlineInputBorder(),
                     suffix: IconButton(
                       onPressed: showPassword,
                       icon: Icon(_hidePassword
