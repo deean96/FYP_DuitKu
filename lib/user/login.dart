@@ -101,84 +101,93 @@ class _LoginPageState extends State<LoginPage> {
     switch (_loginStatus) {
       case LoginStatus.notSignIn:
         return Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Container(
-            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
+          //resizeToAvoidBottomInset: false,
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(8.0),
             child: Form(
               key: _key,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset('assets/images/duitku.png'),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text('Sign In to Your Account'),
-                        SizedBox(width: 5.0),
-                      ],
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset('assets/images/duitku.png'),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Sign In to Your Account'),
+                          SizedBox(width: 5.0),
+                        ],
+                      ),
                     ),
-                  ),
-                  TextFormField(
-                    validator: (input) =>
-                        input.trim().isEmpty ? 'Please enter your email' : null,
-                    onSaved: (input) => userEmail = input,
-                    decoration: InputDecoration(
-                        hintText: "e.g.: youremail@domain.com",
-                        icon: Icon(Icons.mail),
-                        labelText: 'Email',
-                        border: OutlineInputBorder()),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  TextFormField(
-                    validator: (input) => input.length < 8
-                        ? 'Your password must be 8 characters long'
-                        : null,
-                    onSaved: (input) => userPassword = input,
-                    obscureText: _hidePassword,
-                    decoration: InputDecoration(
-                        hintText: "Enter Your Password",
-                        icon: Icon(Icons.lock),
-                        labelText: 'Password',
-                        suffix: IconButton(
-                          onPressed: showPassword,
-                          icon: Icon(_hidePassword
-                              ? Icons.visibility_off
-                              : Icons.visibility),
-                        ),
-                        border: OutlineInputBorder()),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: RaisedButton(
-                      child: Text('Sign In'),
-                      onPressed: () {
-                        check();
-                      },
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        validator: (input) => input.trim().isEmpty
+                            ? 'Please enter your email'
+                            : null,
+                        onSaved: (input) => userEmail = input,
+                        decoration: InputDecoration(
+                            hintText: "e.g.: youremail@domain.com",
+                            icon: Icon(Icons.mail),
+                            labelText: 'Email',
+                            border: OutlineInputBorder()),
+                        keyboardType: TextInputType.emailAddress,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text('New to DuitKu?'),
-                        SizedBox(width: 5.0),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => RegisterPage()));
-                          },
-                          child: Text('Register Here'),
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        validator: (input) => input.length < 8
+                            ? 'Your password must be 8 characters long'
+                            : null,
+                        onSaved: (input) => userPassword = input,
+                        obscureText: _hidePassword,
+                        decoration: InputDecoration(
+                            hintText: "Enter Your Password",
+                            icon: Icon(Icons.lock),
+                            labelText: 'Password',
+                            suffix: IconButton(
+                              onPressed: showPassword,
+                              icon: Icon(_hidePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                            ),
+                            border: OutlineInputBorder()),
+                      ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: RaisedButton(
+                        child: Text('Sign In'),
+                        onPressed: () {
+                          check();
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('New to DuitKu?'),
+                          SizedBox(width: 5.0),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RegisterPage()));
+                            },
+                            child: Text('Register Here'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

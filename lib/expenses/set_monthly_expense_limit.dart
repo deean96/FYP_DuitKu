@@ -1,19 +1,18 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
-class SetExpensesLimit extends StatefulWidget {
-  SetExpensesLimit({Key key, this.title}) : super(key: key);
+class SetMonthlyExpenseLimit extends StatefulWidget {
+  SetMonthlyExpenseLimit({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _SetExpensesLimitState createState() => new _SetExpensesLimitState();
+  _SetMonthlyExpenseLimitState createState() => _SetMonthlyExpenseLimitState();
 }
 
-class _SetExpensesLimitState extends State<SetExpensesLimit> {
-  double expenseLimit = 100.0;
+class _SetMonthlyExpenseLimitState extends State<SetMonthlyExpenseLimit> {
+  double expenseLimit = 400.0;
   NumberPicker decimalNumberPicker;
 
   _handleValueChanged(num value) {
@@ -45,7 +44,7 @@ class _SetExpensesLimitState extends State<SetExpensesLimit> {
         onChanged: _handleValueChanged);
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text('Set Expense Limit'),
+          title: new Text('Set Monthly Expense Limit'),
         ),
         body: new Center(
           child: new Column(
@@ -56,7 +55,7 @@ class _SetExpensesLimitState extends State<SetExpensesLimit> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('Set Your Expense Limit'),
+                    Text('Set Monthly Your Expense Limit'),
                     SizedBox(width: 5.0),
                   ],
                 ),
@@ -67,7 +66,7 @@ class _SetExpensesLimitState extends State<SetExpensesLimit> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('Current Expense Limit is RM$expenseLimit'),
+                    Text('Current Monthly Expense Limit is RM$expenseLimit'),
                   ],
                 ),
               ),
@@ -101,7 +100,7 @@ class _SetExpensesLimitState extends State<SetExpensesLimit> {
           maxValue: 999999,
           decimalPlaces: 2,
           initialDoubleValue: expenseLimit,
-          title: new Text("Set Your Expense Limit"),
+          title: new Text("Set Your Monthly Expense Limit"),
         );
       },
     ).then(_handleValueChangedExternally);

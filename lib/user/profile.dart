@@ -10,13 +10,11 @@ class _ProfilePageState extends State<ProfilePage> {
   String user_email;
   String user_name;
 
-  getPref() async{
+  getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-
       user_email = preferences.getString("user_email");
       user_name = preferences.getString("user_name");
-
     });
   }
 
@@ -28,21 +26,35 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    
     var card = new Card(
       child: new Column(
         children: <Widget>[
           new ListTile(
-            leading: new Icon(Icons.account_box, color: Colors.black,size: 26.0,),
-            title: new Text("Full Name:"
-            ,style: new TextStyle(fontWeight: FontWeight.w400),),
+            leading: new Icon(
+              Icons.account_box,
+              color: Colors.black,
+              size: 26.0,
+            ),
+            title: new Text(
+              "Full Name:",
+              style: new TextStyle(fontWeight: FontWeight.w400),
+            ),
             subtitle: new Text("$user_name"),
           ),
-          new Divider(color: Colors.black87,indent: 16.0,),
-           new ListTile(
-            leading: new Icon(Icons.email, color: Colors.black,size: 26.0,),
-            title: new Text("Email:"
-            ,style: new TextStyle(fontWeight: FontWeight.w400),),
+          new Divider(
+            color: Colors.black87,
+            indent: 16.0,
+          ),
+          new ListTile(
+            leading: new Icon(
+              Icons.email,
+              color: Colors.black,
+              size: 26.0,
+            ),
+            title: new Text(
+              "Email:",
+              style: new TextStyle(fontWeight: FontWeight.w400),
+            ),
             subtitle: new Text("$user_email"),
           ),
         ],
@@ -61,18 +73,18 @@ class _ProfilePageState extends State<ProfilePage> {
     return new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.redAccent,
-        title: InkWell(
-            child: Text('My Account')),
+        title: InkWell(child: Text('My Account')),
         actions: <Widget>[
           new IconButton(
             icon: Icon(
               Icons.edit,
               color: Colors.white,
             ),
-            onPressed: (){},),
+            onPressed: () {},
+          ),
         ],
       ),
-        body: center,    
+      body: center,
     );
   }
 }

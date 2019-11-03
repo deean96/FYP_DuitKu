@@ -1,11 +1,11 @@
 import 'package:duitku/expenses/add_expenses.dart';
-import 'package:duitku/expenses/set_expenses_limit.dart';
+import 'package:duitku/expenses/set_expense_limit_menu.dart';
 import 'package:duitku/expenses/view_expenses.dart';
+import 'package:duitku/reports/report_menu.dart';
 import 'package:duitku/reports/weekly_report_by_category.dart';
 import 'package:duitku/user/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:duitku/user/login.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class HomePage extends StatefulWidget {
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => SetExpensesLimit()));
+                    builder: (BuildContext context) => SetExpenseLimitMenu()));
               },
             ),
 
@@ -169,8 +169,7 @@ class _HomePageState extends State<HomePage> {
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        WeeklyReportByCategory()));
+                    builder: (BuildContext context) => ReportMenu()));
               },
             ),
 
