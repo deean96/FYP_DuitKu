@@ -35,7 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   save() async {
     final response =
-        await http.post("http://192.168.43.253/duitku/api/register.php", body: {
+        await http.post("http://192.168.43.76:8080/duitku/api/register.php", body: {
       "user_email": user_email,
       "user_password": user_password,
       "user_name": user_name,

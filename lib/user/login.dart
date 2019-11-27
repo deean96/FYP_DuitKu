@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
 
   login() async {
     final response = await http.post(
-        "http://192.168.43.253/duitku/api/login.php",
+        "http://192.168.43.76:8080/duitku/api/login.php",
         body: {"user_email": userEmail, "user_password": userPassword});
 
     final data = jsonDecode(response.body);

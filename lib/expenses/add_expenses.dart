@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 //import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as HTTP;
+import 'dart:convert';
 
 class AddExpenses extends StatefulWidget {
+   AddExpenses({Key key, this.myTitle}) : super(key: key);
+
+  final String myTitle;
+  
   @override
   _AddExpensesState createState() => _AddExpensesState();
 }
@@ -15,12 +22,18 @@ class _AddExpensesState extends State<AddExpenses> {
   double _expenseAmount;
 
   Future scanExpense() async {
-    String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+    final barcodeScanResult = await FlutterBarcodeScanner.scanBarcode(
         '#ff6666', 'Cancel', true, ScanMode.QR);
+    
     setState(() {
-      scanResult = barcodeScanRes;
+      scanResult = barcodeScanResult;
     });
-    //print(barcodeScanRes.toString());
+
+    //parse QRCode string value to REST API
+    String url = "http://192.168.43.76:8080/duitku/api/expense_services.php?expense_location=" + barcodeScanResult;
+    final response = await HTTP.post(url);
+    final data = json.decode(response.body);
+    print(barcodeScanResult.toString());
   }
 
   @override
@@ -38,8 +51,6 @@ class _AddExpensesState extends State<AddExpenses> {
               Padding(
                 padding: EdgeInsets.all(50),
               ),
-              //mainAxisAlignment: MainAxisAlignment.center,
-              //crossAxisAlignment: CrossAxisAlignment.center,
               new Text(scanResult != null ? scanResult : 'Scan Text Here'),
 
               /*TextFormField(
